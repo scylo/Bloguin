@@ -4,6 +4,7 @@ neste projeto, por simplicidade, as views ficam dentro do mesmo arquivo
 '''
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import get_object_or_404, render
+from django.views.decorators.cache import cache_page
 from .models import Post
 from .forms import PostForm
 
@@ -12,6 +13,7 @@ def index(request):
     return render(request, 'base.html', locals())
 
 @login_required
+@cache_page(60 * 15)
 def post_list(request):
     posts = Post.objects.order_by('-pub_date')
     return render(request, 'post_list.html', locals())
