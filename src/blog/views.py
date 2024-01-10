@@ -22,7 +22,7 @@ def post_list(request):
 @login_required
 def post_detail(request, pk):
     # não precisa ir no banco pra exibir informações do post
-    post = Post.objects.select_related('author').get(pk=1)
+    post = Post.objects.select_related('author').get(pk=pk)
     comments = post.comments.all()
     return render(request, 'post_detail.html', locals())
 
