@@ -1,11 +1,17 @@
 {% extends 'base.html' %}
 
+{% block title %}Lista de Posts{% endblock %}
+
 {% block content %}
   <h1>Lista de Posts</h1>
   <ul>
     {% for post in posts %}
       <li>
-        <h2>{{ post.title }}</h2>
+        <h2>
+          <a href="{% url 'post_detail' post.pk %}">
+            {{ post.title }}
+          </a>
+        </h2>
         <p>Autor: {{ post.author }}</p>
         <p>Data de Publicação: {{ post.pub_date }}</p>
         <p>Comentários:</p>
