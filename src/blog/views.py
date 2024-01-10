@@ -30,6 +30,7 @@ def add_post(request):
             post = form.save()
             
             # ou salva o usuário que está criando o post
+            # (remover o campo 'author' do form)
 
             # cria o post sem salvar pois vamos fazer isso depois
             # post = form.save(commit=False)
