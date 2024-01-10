@@ -9,11 +9,15 @@ Para executar o projeto, você precisará ter o Python 3 instalado em seu sistem
 ```pip install -r requirements.txt```
 
 ## Executando o servidor   
-Para executar o servidor, você precisará executar o seguinte comando:
+Para executar o servidor, você precisará executar os seguintes comandos:
+
+```python manage.py migrate```
+
+que criará as tabelas no banco de dados e
 
 ```python manage.py runserver```
 
-Isso iniciará o servidor em http://localhost:8000/.
+que iniciará o servidor em http://localhost:8000/.
 
 ## Testando o aplicativo   
 Para testar o aplicativo, você pode executar o seguinte comando:
