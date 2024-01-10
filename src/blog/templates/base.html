@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Meu Projeto</title>
+</head>
+<body>
+  <nav>
+    <ul>
+      <li><a href="{% url 'post_list' %}">Lista de Posts</a></li>
+    </ul>
+  </nav>
+  {% block content %}
+  {% endblock %}
+</body>
+</html>

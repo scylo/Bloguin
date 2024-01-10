@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  <h1>Lista de Posts</h1>
+  <ul>
+    {% for post in posts %}
+      <li>
+        <h2>{{ post.title }}</h2>
+        <p>Autor: {{ post.author }}</p>
+        <p>Data de Publicação: {{ post.pub_date }}</p>
+        <p>Comentários:</p>
+        <ul>
+          {% for comment in post.comments.all %}
+            <li>{{ comment.content }} - {{ comment.author }}</li>
+          {% empty %}
+            <li>Nenhum comentário ainda.</li>
+          {% endfor %}
+        </ul>
+      </li>
+    {% empty %}
+      <li>Nenhum post encontrado.</li>
+    {% endfor %}
+  </ul>
+{% endblock %}
