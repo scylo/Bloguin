@@ -15,12 +15,14 @@ def index(request):
 @login_required
 @cache_page(60 * 15)
 def post_list(request):
-    posts = Post.objects.order_by('-pub_date')
+    # comentários são guardados em uma query separada
+    posts = Post.objects.prefetch_related('comments').order_by('-pub_date')
     return render(request, 'post_list.html', locals())
 
 @login_required
 def post_detail(request, pk):
-    post = get_object_or_404(Post, pk=pk)
+    # não precisa ir no banco pra exibir informações do post
+    post = Post.objects.select_related('author').get(pk=1)
     comments = post.comments.all()
     return render(request, 'post_detail.html', locals())
 
