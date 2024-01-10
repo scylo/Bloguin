@@ -2,7 +2,7 @@
 dependendo da organização do projeto, as views devem ficar em arquivos separados
 neste projeto, por simplicidade, as views ficam dentro do mesmo arquivo
 '''
-
+from django.contrib.auth.decorators import login_required
 from django.shortcuts import get_object_or_404, render
 from .models import Post
 from .forms import PostForm
@@ -11,17 +11,18 @@ from .forms import PostForm
 def index(request):
     return render(request, 'base.html', locals())
 
+@login_required
 def post_list(request):
     posts = Post.objects.order_by('-pub_date')
     return render(request, 'post_list.html', locals())
 
-
+@login_required
 def post_detail(request, pk):
     post = get_object_or_404(Post, pk=pk)
     comments = post.comments.all()
     return render(request, 'post_detail.html', locals())
 
-
+@login_required
 def add_post(request):
     if request.method == 'POST':
         form = PostForm(request.POST)
