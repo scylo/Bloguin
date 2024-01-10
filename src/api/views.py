@@ -5,12 +5,12 @@ from .permissions import IsOwnerOrReadOnly
 
 
 class PostList(generics.ListCreateAPIView):
-    queryset = Post.objects.all()
+    queryset = Post.objects.prefetch_related('comments')
     serializer_class = PostSerializer
 
 
 class PostDetail(generics.RetrieveUpdateDestroyAPIView):
-    queryset = Post.objects.all()
+    queryset = Post.objects.prefetch_related('comments')
     serializer_class = PostSerializer
     permission_classes = [IsOwnerOrReadOnly]
 
